@@ -62,7 +62,13 @@ Below are steps followed to complete each component of this project.
 
 
 ## Run the scripts
-There is one scripts in this project, made in Python 
+There are 4 sripts in this ETL project
+- cql_queries.py - in this scripts are all queries needed for this project
+- create_newfile.py - in this script are all the steps to create a sample of file
+- create_tables.py - in this script are all the steps to connect an create tables in Apache Cassandra
+- ETL.py - in this scripts are all the steps to do the process ETL, including the scrips above
+
+To run the ETL process is needed only process the scripts ETL.py. 
 
 #### The environment:
 -  Python versions from 3.6 to 3.10    
@@ -71,7 +77,7 @@ There is one scripts in this project, made in Python
 - Re
 - Os
 - Glob
-- Numpy
+- Nump. 
 - json
 - Csv.
 
@@ -83,3 +89,4 @@ There is one scripts in this project, made in Python
 
 3. Give me every user name (first and last) in my music app history who listened to the song 'All Hands Against His Own'
 
+These answer will be showed in the terminal - are in ETP.py script
