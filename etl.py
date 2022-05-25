@@ -1,6 +1,8 @@
 """
     Description: This script is responsible for create sparkify Cassandra database and its tables based on new files create in steop create_new_file.py and then executing the ingest process in according to the function
     that performs the transformation to save it to the database.
+    
+    ## To get details about these tables structure, please, see on README
 """
 
 # Import Python packages 
@@ -24,7 +26,7 @@ from cql_queries import *
 def insert_row(session, line, ins_list):
 ## insert table 1         
     try:
-        session.execute(insert_queries[0],(int(line[8]), int(line[3]), int(line[10]), line[0], line[9], float(line[5])))
+        session.execute(insert_queries[0],(int(line[8]), int(line[3]), line[0], line[9], float(line[5])))
     except Exception as e:
         print(e)
     else:    
@@ -40,7 +42,7 @@ def insert_row(session, line, ins_list):
                           
 ## insert table 3        
     try:
-          session.execute(insert_queries[2],(line[9], int(line[8]), int(line[3]), int(line[10]), line[1], line[4]))
+          session.execute(insert_queries[2],(line[9], int(line[10]), line[1], line[4]))
     except Exception as e:
         print(e)
     else:    
@@ -86,12 +88,12 @@ def read_insert(session, cluster, file):
 #### SELECT to verify that the data have been inserted into each table
 
 ## show results like Pandas Data Frame
-def get_dataframe(list_index, list_columns, rows, index):
+def get_dataframe(rows, selection, list_columns):
     dict_result = {}
     i = 0
   
     for row in rows:
-        dict_result[i] = [row[i] for i in list_index]
+        dict_result[i] = [content for content in row]
         i += 1
         
     result = pd.DataFrame.from_dict(dict_result, orient='index', columns=list_columns)
@@ -100,8 +102,8 @@ def get_dataframe(list_index, list_columns, rows, index):
                        'display.max_columns', None,
                        'display.precision', 3,
                        ):
-            print ('\n ------------------ Query', index, ' Result')
-            print(result)
+            print ('\n ------------------ Query', selection, ' Result')
+            print(result[list_columns])
     
 def select_process(session):
 #Query 1 select records from a table session_library
@@ -113,7 +115,7 @@ def select_process(session):
         print(e)
     else:    
         ##get the dataframe from result    
-        get_dataframe([3,5],['Artist', 'Song'], rows, 1)
+        get_dataframe(rows, 1, ['Artist', 'Song'])
             
 #Query 2 select records from a table
 ###Give me only the following: name of artist, song (sorted by ###itemInSession) and user (first and last name) for userid = 10, ###sessionid = 182 """
@@ -124,7 +126,7 @@ def select_process(session):
         print(e)
     else:    
         ##get the dataframe from result    
-        get_dataframe([3,6,4,5],['Artist', 'Song', 'First Name', 'Last Name'], rows, 2)
+        get_dataframe(rows, 2, ['Artist', 'Song', 'First_Name', 'Last_ Name'])
 
 #Query 3 select records from a table
 #Give me every user name (first and last) in my music app  hstory #who listened to the song 'All Hands Against His Own' """
@@ -135,7 +137,7 @@ def select_process(session):
         print(e)
     else:
     ##get the dataframe from result    
-        get_dataframe([4,5],['First Name', 'Last Name'], rows, 3)
+        get_dataframe(rows, 3, ['First_Name', 'Last_Name'])
         
     
 ## Process main
@@ -144,18 +146,8 @@ def main():
     - create keyspace and tables  
     
     - Creates all tables needed. 
-    
-    - Insert records in the tables
-    
-    - Drop tables
-    
-    - check results
-    
-    - Finally, closes the connection. 
-    """
+   """ 
     print ("------ETL - Start")
-    ##create cluster, session and tables from create_tables script
-    ## return session, cluster
     
     session_cql, cluster_cql = ct.start_tables()
     print ("-------Create Table - End\n")

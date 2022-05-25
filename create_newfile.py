@@ -26,10 +26,10 @@ def get_file(file_name):
       
     
     # get all files matching extension from directory
-    # checking your current working directory
+    # checking current working directory
     print(os.getcwd())
 
-    # Get your current folder and subfolder event data
+    # Get current folder and subfolder event data
     filepath = os.getcwd() + file_name
 
     # Create a for loop to create a list of files and collect each filepath
@@ -72,8 +72,7 @@ def get_data(file_path_list):
     #print ("First row:\n", full_data_rows_list[0])
 
 
-    # creating a smaller event data csv file called event_datafile_new csv that will be used to insert data into the \
-    # Apache Cassandra tables
+    # creating a smaller event data csv file called event_datafile_new csv that will be used to insert data into the Apache Cassandra tables
 
     ## The filter will be: select only records that 'artist' has value then result at smaller one
 
