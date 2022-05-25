@@ -1,6 +1,7 @@
 """
-    Description: This script is responsible for create sparkify Cassandra database and its tables based on new files create in steop create_new_file.py and then executing the ingest process in according to the function
-    that performs the transformation to save it to the database.
+    Description: This script is responsible for create sparkify Cassandra database and its tables based on new files create in steop create_new_file.py and then executing the ingest process in according to the function that performs the transformation to save it to the database.
+    
+    To get details about these tables structure, please, see on README
 """
 
 # Import Python packages 
