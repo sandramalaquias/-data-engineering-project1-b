@@ -121,7 +121,7 @@ From the above two points the query to get the data will be a SELECT statement l
 <ul>
 <li>As the filter will be done based on userId, the table name for this query will be "User_library"</li>
 <li>The table will be created only if it does not exist.</li>
-<li>The PRIMARY KEY will be <em><strong>((userId, sessionId), itemInSession))</strong></em> that are enougth to get unique values for this table.<\li>
+<li>The PRIMARY KEY will be <em><strong>((userId, sessionId), itemInSession))</strong></em> that are enougth to get unique values for this table.</li>
 <li>Note that the cluster will be  <em><strong>userId and sessionID</strong></em>  and the column <em><strong>itemInSession</em></strong> will be used for sorted ascending.</li>
 <li>The query result need only artist's name, song's title and user's name (first and last), then they are the table columns.</li>
 </ul>
@@ -141,10 +141,10 @@ From the above two points the query to get the data will be a SELECT statement l
 
 <ul>
 <li>As the filter will be done based on song's title, the table name for this query will be "Song_library"</li>
-<li>The table will be created only if it does not exist.<\li>
-<li>The PRIMARY KEY will be <em><strong>(song, userId)</strong></em> that are enougth to get unique values for this table.<\li>
+<li>The table will be created only if it does not exist.</li>
+<li>The PRIMARY KEY will be <em><strong>(song, userId)</strong></em> that are enougth to get unique values for this table.</li>
 <li>The query result need only user's name (first and last), then they are the table columns.</li>
-<li>Note that, regardless how many times the user listened the song, the table will record only once.
-<\ul>
+<li>Note that, regardless how many times the user listened the song, the table will record only once.</li>
+</ul>
 
 <em><strong>These answer will be showed in the terminal when ETP.py script run.</em></strong>
